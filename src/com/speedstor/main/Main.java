@@ -4,7 +4,6 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.io.FileNotFoundException;
 
 public class Main extends Canvas implements Runnable {
 	private static final long serialVersionUID = -2578428780737535640L;
@@ -20,7 +19,7 @@ public class Main extends Canvas implements Runnable {
 			private Thread thread;
 		
 		//Game Engine
-			private long milTime, delta, timer, runTimer;
+			private long milTime, delta, timer;
 
 		
 			
@@ -34,7 +33,7 @@ public class Main extends Canvas implements Runnable {
 		handler = new Handler();
 		
 		new Window((int) width, (int)height, "Pokemon is dumb", this);
-		new Map("C://Users//razer//Desktop//JavaDevelopment//eclipse//workspace2//Pokemon//src//com//speedstor//main/Map1.txt");
+		handler.addObject(new LoadMap("C://Users//razer//Desktop//JavaDevelopment//eclipse//workspace2//Pokemon//src//com//speedstor//main/Map1.txt", handler));
 		
 		run();
 	}
@@ -48,7 +47,6 @@ public class Main extends Canvas implements Runnable {
 		
 		timer = System.currentTimeMillis();
 		milTime = System.currentTimeMillis();
-		runTime = 0;
 		
 		while(running) {
 			delta = System.currentTimeMillis() - milTime;
@@ -67,7 +65,7 @@ public class Main extends Canvas implements Runnable {
 				timer = System.currentTimeMillis();
 				System.out.println("Frames: " + frames);
 				frames = 0;
-				runTime ++;
+				runTime++;
 			}
 		}
 		stop();
@@ -105,7 +103,7 @@ public class Main extends Canvas implements Runnable {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, (int)width, (int)height);
 		
-		handler.render();
+		handler.render(g);
 		
 		g.dispose();
 		bs.show();

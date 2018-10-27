@@ -1,32 +1,34 @@
 package com.speedstor.main;
 
+import java.awt.Graphics;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Map {
+public class LoadMap extends Objects{
 	//Variables
 		int[][] map;
 		Handler handler;
 		int row = 0, col;
 		
-	public Map(String location) {
+	public LoadMap(String location, Handler handler) {
+		this.handler = handler;
 		try {
 			File file = new File(location);
-		Scanner s = new Scanner(file);
-		boolean holder = false;
-		for(int i=0; s.hasNextInt(); i++) {
-			if(s.nextInt() == 1) {
-				row ++;
-				if(holder == false) {
-					col = i;
-					holder = true;
+			Scanner s = new Scanner(file);
+			boolean holder = false;
+			for(int i=0; s.hasNextInt(); i++) {
+				if(s.nextInt() == 1) {
+					row ++;
+					if(holder == false) {
+						col = i;
+						holder = true;
+					}
 				}
 			}
-		}
-		map = new int[col][row];
-		System.out.println("The dimensions of the Map is " + col + " x " + row );
-		s.close();
+			map = new int[col][row];
+			System.out.println("The dimensions of the Map is " + col + " x " + row );
+			s.close();
 		}catch(Exception e) {
 			System.out.println("cannot read file");
 		}
@@ -56,7 +58,7 @@ public class Map {
 		
 	}
 	
-	public void render() {
+	public void render(Graphics g) {
 		
 	}
 	
