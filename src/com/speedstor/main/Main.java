@@ -5,10 +5,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
-import com.speedstor.input.Input;
-import com.speedstor.map.LoadMap;
-import com.speedstor.map.MapRender;
-
 public class Main extends Canvas implements Runnable {
 	private static final long serialVersionUID = -2578428780737535640L;
 	
@@ -16,7 +12,7 @@ public class Main extends Canvas implements Runnable {
 		//Global
 			public boolean running = true;
 			public int runTime = 0;
-			public double width = 1200, height = width / 4 * 3;
+			public static double width = 1200, height = width / 4 * 3;
 			public static int key = 0;
 		
 		//Private
@@ -24,7 +20,6 @@ public class Main extends Canvas implements Runnable {
 			private Thread thread;
 		
 		//Game Engine
-			private long milTime, delta, timer;
 
 		
 			
@@ -53,16 +48,24 @@ public class Main extends Canvas implements Runnable {
 		
 		requestFocus();
 		System.out.println("The game had started on " + frames + ".");
-		
+		long milTime, delta = 0, timer;
 		timer = System.currentTimeMillis();
-		milTime = System.currentTimeMillis();
+		milTime = System.nanoTime();
+		long lastTime = System.nanoTime();
+		double amountOfTicks = 60;
+		double ns = 100000000 /amountOfTicks;
+		
+		
 		
 		while(running) {
-			delta = System.currentTimeMillis() - milTime;
+			long now = System.nanoTime();
 			
+			delta += (now - lastTime) / ns;
+			
+			lastTime = now;
 			while(delta >= 1) {
 				tick();
-				delta--;
+				delta --;
 			}
 			
 			if(running) {

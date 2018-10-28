@@ -1,13 +1,9 @@
-package com.speedstor.map;
+package com.speedstor.main;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Scanner;
-
-import com.speedstor.main.Handler;
-import com.speedstor.main.LoadImage;
-import com.speedstor.main.Objects;
 
 public class LoadMap extends Objects{
 	//Variables
@@ -58,7 +54,7 @@ public class LoadMap extends Objects{
 			e.printStackTrace();
 		}
 		
-		temp = loadImage.Load("src/com/speedstor/main/res/grassTile.png");
+		temp = loadImage.Load("/grassTile.png");
 		
 		System.out.println("Finished initlize of map files and textures");
 	}

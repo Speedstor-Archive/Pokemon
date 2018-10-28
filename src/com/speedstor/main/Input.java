@@ -1,12 +1,9 @@
-package com.speedstor.input;
+package com.speedstor.main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import com.speedstor.main.Main;
-import com.speedstor.map.MapRender;
 
 public class Input implements KeyListener, MouseListener{
 		
@@ -14,14 +11,20 @@ public class Input implements KeyListener, MouseListener{
 		int k = e.getKeyCode();
 		Main.key = e.getKeyCode();
 		
-		if(k == 87 && k == 38) MapRender.up = true;
-		//if(k == )
-		
+		if(k == 87 || k == 38) MapRender.ySpeed = 1;
+		if(k == 83 || k == 40) MapRender.ySpeed = -1;
+		if(k == 65 || k == 37) MapRender.xSpeed = 1;
+		if(k == 68 || k == 39) MapRender.xSpeed = -1;
 	}
 
 	
 	public void keyReleased(KeyEvent e) {
+		int k = e.getKeyCode();
 		
+		if(k == 87 || k == 38) MapRender.ySpeed = 0;
+		if(k == 83 || k == 40) MapRender.ySpeed = 0;
+		if(k == 65 || k == 37) MapRender.xSpeed = 0;
+		if(k == 68 || k == 39) MapRender.xSpeed = 0;
 		
 	}
 
