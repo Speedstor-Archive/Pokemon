@@ -1,17 +1,24 @@
 package com.speedstor.main;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import javax.imageio.ImageIO;
 
 public class LoadMap extends Objects{
 	//Variables
 		int[][] map;
 		Handler handler;
 		int row = 0, col;
+		LoadImage loadImage;
+		BufferedImage temp;
 		
 	public LoadMap(String location, Handler handler) {
+		loadImage = new LoadImage();
 		this.handler = handler;
 		try {
 			File file = new File(location);
@@ -51,19 +58,18 @@ public class LoadMap extends Objects{
 			e.printStackTrace();
 		}
 		
-		System.out.println(Arrays.toString(map));
+		temp = loadImage.Load("src/com/speedstor/main/res/grassTile.png");
+		
+		System.out.println("Finished initlize of map files and textures");
 	}
 	
 	public void tick() {
 		
 	}
 	
+	
 	public void render(Graphics g) {
-		
-	}
-	
-	
-	
-	
+		g.drawImage(temp, 200,200, null);
+	}	
 	
 }

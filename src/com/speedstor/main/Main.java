@@ -33,7 +33,7 @@ public class Main extends Canvas implements Runnable {
 		handler = new Handler();
 		
 		new Window((int) width, (int)height, "Pokemon is dumb", this);
-		handler.addObject(new LoadMap("C://Users//razer//Desktop//JavaDevelopment//eclipse//workspace2//Pokemon//src//com//speedstor//main/Map1.txt", handler));
+		handler.addObject(new LoadMap("src//com//speedstor//main/Map1.txt", handler));
 		
 		run();
 	}
