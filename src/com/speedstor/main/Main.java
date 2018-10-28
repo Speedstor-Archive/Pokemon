@@ -5,6 +5,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import com.speedstor.input.Input;
+import com.speedstor.map.LoadMap;
+import com.speedstor.map.MapRender;
+
 public class Main extends Canvas implements Runnable {
 	private static final long serialVersionUID = -2578428780737535640L;
 	
@@ -13,6 +17,7 @@ public class Main extends Canvas implements Runnable {
 			public boolean running = true;
 			public int runTime = 0;
 			public double width = 1200, height = width / 4 * 3;
+			public static int key = 0;
 		
 		//Private
 			Handler handler;
@@ -24,7 +29,7 @@ public class Main extends Canvas implements Runnable {
 		
 			
 	
-	//Inital Commit
+	//Initial Commit
 	public static void main(String[] args) {
 		new Main();
 	}
@@ -34,6 +39,10 @@ public class Main extends Canvas implements Runnable {
 		
 		new Window((int) width, (int)height, "Pokemon is dumb", this);
 		handler.addObject(new LoadMap("src//com//speedstor//main/Map1.txt", handler));
+		handler.addObject(new MapRender(handler));
+		
+		//keyInput
+		addKeyListener(new Input());
 		
 		run();
 	}
@@ -102,6 +111,10 @@ public class Main extends Canvas implements Runnable {
 		
 		g.setColor(Color.black);
 		g.fillRect(0, 0, (int)width, (int)height);
+		
+		g.setFont(new java.awt.Font("Calibre", 8, 30));
+		g.setColor(Color.gray);
+		g.drawString("Key: " + key, 30, 40);
 		
 		handler.render(g);
 		
