@@ -6,5 +6,4 @@ public abstract class Objects {
 	
 	public abstract void render(Graphics g);
 	public abstract void tick();
-	
 }

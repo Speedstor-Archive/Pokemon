@@ -12,7 +12,7 @@ public class Main extends Canvas implements Runnable {
 		//Global
 			public boolean running = true;
 			public int runTime = 0;
-			public static double width = 1200, height = width / 4 * 3;
+			public static double width = 1200, height = width / 4 * 3; //Scene "blocks": 15 x 13
 			public static int key = 0;
 		
 		//Private
@@ -35,6 +35,7 @@ public class Main extends Canvas implements Runnable {
 		new Window((int) width, (int)height, "Pokemon is dumb", this);
 		handler.addObject(new LoadMap("src//com//speedstor//main/Map1.txt", handler));
 		handler.addObject(new MapRender(handler));
+		handler.addObject(new Player1(handler));
 		
 		//keyInput
 		addKeyListener(new Input());
@@ -48,9 +49,8 @@ public class Main extends Canvas implements Runnable {
 		
 		requestFocus();
 		System.out.println("The game had started on " + frames + ".");
-		long milTime, delta = 0, timer;
+		long delta = 0, timer;
 		timer = System.currentTimeMillis();
-		milTime = System.nanoTime();
 		long lastTime = System.nanoTime();
 		double amountOfTicks = 60;
 		double ns = 100000000 /amountOfTicks;
