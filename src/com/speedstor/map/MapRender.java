@@ -3,6 +3,7 @@ package com.speedstor.map;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import com.speedstor.Input.Input;
 import com.speedstor.main.Handler;
 import com.speedstor.main.LoadImage;
 import com.speedstor.main.Objects;
@@ -33,6 +34,7 @@ public class MapRender extends Objects{
 		x += xSpeed;
 		y += ySpeed;
 		
+		//Counts the pixels to blocks passed
 		if(xSpeed != 0) { xBuff += Math.abs(xSpeed);}
 		if (ySpeed != 0 ) yBuff += Math.abs(ySpeed);
 		
@@ -43,8 +45,8 @@ public class MapRender extends Objects{
 		
 		
 		//Handles double clicks
-		if(xBuff == 0 && yBuff == 0) {
-			if(direction == Player1.facing) {
+		if(xBuff == 0 && yBuff == 0 && direction == Player1.facing) {
+			Input.keyChange = false;
 				switch(direction) {
 					case 1:
 						buff = xSpeed;
@@ -67,11 +69,11 @@ public class MapRender extends Objects{
 						xSpeed = -Player1.speed;
 						break;
 				}
-			}else if(direction == 0) {
+			
+		}else if(xBuff == 0 && yBuff == 0 && direction == 0) {
 						xSpeed = 0;
 						ySpeed = 0;
 			}
-		}
 	
 		//Resets direction
 		if(up == false && down == false && left == false && right == false) direction = 0;

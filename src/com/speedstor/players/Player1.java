@@ -2,6 +2,7 @@ package com.speedstor.players;
 
 import java.awt.Graphics;
 
+import com.speedstor.Input.Input;
 import com.speedstor.main.Handler;
 import com.speedstor.main.Objects;
 import com.speedstor.map.MapRender;
@@ -18,7 +19,7 @@ public class Player1 extends Objects{
 	public void tick() {
 		
 		//Directing the player to face the right direction before taking off
-		if(facing != MapRender.direction && MapRender.direction != 0) facingTimer++;
+		if(facing != MapRender.direction && MapRender.direction != 0 && Input.keyChange == false) facingTimer++;
 		if(facingTimer > 200 && MapRender.direction != 0) {
 			facing = MapRender.direction;
 			facingTimer = 0;
