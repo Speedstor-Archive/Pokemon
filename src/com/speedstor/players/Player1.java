@@ -1,6 +1,10 @@
-package com.speedstor.main;
+package com.speedstor.players;
 
 import java.awt.Graphics;
+
+import com.speedstor.main.Handler;
+import com.speedstor.main.Objects;
+import com.speedstor.map.MapRender;
 
 public class Player1 extends Objects{
 	public static double speed = 0.5;

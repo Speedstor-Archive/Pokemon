@@ -1,7 +1,12 @@
-package com.speedstor.main;
+package com.speedstor.map;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+
+import com.speedstor.main.Handler;
+import com.speedstor.main.LoadImage;
+import com.speedstor.main.Objects;
+import com.speedstor.players.Player1;
 
 public class MapRender extends Objects{
 	//Variables

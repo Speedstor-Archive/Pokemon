@@ -5,6 +5,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import com.speedstor.Input.Input;
+import com.speedstor.map.LoadMap;
+import com.speedstor.map.MapRender;
+import com.speedstor.players.Player1;
+
 public class Main extends Canvas implements Runnable {
 	private static final long serialVersionUID = -2578428780737535640L;
 	
@@ -33,7 +38,7 @@ public class Main extends Canvas implements Runnable {
 		handler = new Handler();
 		
 		new Window((int) width, (int)height, "Pokemon is dumb", this);
-		handler.addObject(new LoadMap("src//com//speedstor//main/Map1.txt", handler));
+		handler.addObject(new LoadMap("res/Map1.txt", handler));
 		handler.addObject(new MapRender(handler));
 		handler.addObject(new Player1(handler));
 		

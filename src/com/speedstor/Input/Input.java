@@ -1,9 +1,13 @@
-package com.speedstor.main;
+package com.speedstor.Input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import com.speedstor.main.Main;
+import com.speedstor.map.MapRender;
+import com.speedstor.players.Player1;
 
 public class Input implements KeyListener, MouseListener{
 		

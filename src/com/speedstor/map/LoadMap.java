@@ -1,9 +1,13 @@
-package com.speedstor.main;
+package com.speedstor.map;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Scanner;
+
+import com.speedstor.main.Handler;
+import com.speedstor.main.LoadImage;
+import com.speedstor.main.Objects;
 
 public class LoadMap extends Objects{
 	//Variables
