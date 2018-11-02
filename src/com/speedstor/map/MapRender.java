@@ -61,7 +61,7 @@ public class MapRender extends Objects{
 		//Handles double clicks
 		if(xBuff == 0 && yBuff == 0 && direction == Player1.facing) {
 			Input.keyChange = false;
-			Player1.faceDirection = direction;
+			if(direction != 0) Player1.faceDirection = direction;
 				switch(direction) {
 					case 1:
 						buff = xSpeed;

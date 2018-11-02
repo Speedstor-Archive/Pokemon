@@ -13,6 +13,7 @@ public class Player1 extends Characters{
 	
 	public Player1(String spriteSheet, Handler handler) {
 		this.handler = handler;
+		faceDirection = 2;
 		
 		init("Player1", spriteSheet);
 		
@@ -36,7 +37,6 @@ public class Player1 extends Characters{
 	
 	public static int step = 0, xStep = 0;
 	public void render(Graphics g) {
-		
 		//Switches to the slide of keyframes needed for the animation according to the direction the player is going to
 		
 			switch(faceDirection) {
