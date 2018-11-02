@@ -37,10 +37,13 @@ public class Main extends Canvas implements Runnable {
 	public Main() {
 		handler = new Handler();
 		
+		//Creating window
 		new Window((int) width, (int)height, "Pokemon is dumb", this);
+		
+		//Adding elements on screen
 		handler.addObject(new LoadMap("res/Map1.txt", handler));
 		handler.addObject(new MapRender(handler));
-		handler.addObject(new Player1(handler));
+		handler.addObject(new Player1("/maleSprite.png", handler));
 		
 		//keyInput
 		addKeyListener(new Input());

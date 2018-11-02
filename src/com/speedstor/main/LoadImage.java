@@ -2,6 +2,7 @@ package com.speedstor.main;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -18,4 +19,21 @@ public class LoadImage {
 		
 		return image;
 	}
+	
+	public ArrayList<BufferedImage> parImageAcross(BufferedImage imageInit, int x, int y, int width, int height, int cutWidth, int numOf) {
+		ArrayList<BufferedImage> imageClip = new ArrayList<BufferedImage>();
+		
+		
+		
+		for(int i=1; i < numOf; i++) {
+			imageClip.add(imageInit.getSubimage(x, y, width, height));
+			imageClip.add(imageInit.getSubimage(x + (cutWidth * i), y, width, height));
+			imageClip.add(imageInit.getSubimage(x, y, width, height));
+		}
+		
+		
+		
+		return imageClip;
+	}
+	
 }

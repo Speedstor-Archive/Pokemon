@@ -35,18 +35,33 @@ public class MapRender extends Objects{
 		y += ySpeed;
 		
 		//Counts the pixels to blocks passed
-		if(xSpeed != 0) { xBuff += Math.abs(xSpeed);}
-		if (ySpeed != 0 ) yBuff += Math.abs(ySpeed);
+		if(xSpeed != 0) { 
+			xBuff += Math.abs(xSpeed);
+			if(xBuff == 1) Player1.xStep++;
+			else if(xBuff == 23) Player1.xStep++;
+			else if(xBuff == 46) Player1.xStep++;
+			if(Player1.xStep >= 6) Player1.xStep = 0;
+			}
+		if (ySpeed != 0 ) {
+			yBuff += Math.abs(ySpeed);
+			if(yBuff == 1) Player1.step++;
+			else if(yBuff == 23) Player1.step++;
+			else if(yBuff == 46) Player1.step++;
+			if(Player1.step >= 6) Player1.step = 0;
+		}
+		
+		//helps the rendering of the animation of Player1
 		
 		
 		//stops actions in blocks
-		if(yBuff >= 80) {yBuff = 0;}
+		if(yBuff >= 69) {yBuff = 0;}
 		else if(xBuff >= 80) {xBuff = 0;}
-		
+
 		
 		//Handles double clicks
 		if(xBuff == 0 && yBuff == 0 && direction == Player1.facing) {
 			Input.keyChange = false;
+			Player1.faceDirection = direction;
 				switch(direction) {
 					case 1:
 						buff = xSpeed;
