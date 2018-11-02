@@ -35,22 +35,27 @@ public class Player1 extends Characters{
 	}
 	
 	
-	public static int step = 0, xStep = 0;
+	public static int step = 0, xStep = 0, xSpeedStep = 0, xSpeedStep1 = 0, ySpeedStep = 0, ySpeedStep1 = 0;
 	public void render(Graphics g) {
 		//Switches to the slide of keyframes needed for the animation according to the direction the player is going to
 		
+		
 			switch(faceDirection) {
 				case 1:
-					g.drawImage(up.get(step), (int) (Main.width / 2) - 87, (int) Main.height / 16 * 6, 169, 128, null);
+					if(MapRender.ySpeed == 0.5 || MapRender.ySpeed == 0) g.drawImage(up.get(step/2), (int) (Main.width / 2) - 87, (int) Main.height / 16 * 6, 169, 128, null);
+					if(MapRender.ySpeed == 1.5) g.drawImage(sprintUp.get(ySpeedStep / 4), (int) (Main.width / 2) - 87, (int) Main.height / 16 * 6, 169, 128, null);
 					break;
 				case 2:
-					g.drawImage(down.get(step), (int) (Main.width / 2) - 87, (int) Main.height / 16 * 6, 169, 128, null);
+					if(MapRender.ySpeed == -0.5 || MapRender.ySpeed == 0) g.drawImage(down.get(step/2), (int) (Main.width / 2) - 87, (int) Main.height / 16 * 6, 169, 128, null);
+					if(MapRender.ySpeed == -1.5) g.drawImage(sprintDown.get(ySpeedStep / 4), (int) (Main.width / 2) - 87, (int) Main.height / 16 * 6, 169, 128, null);
 					break;
 				case 3:
-					g.drawImage(left.get(xStep), (int) (Main.width / 2) - 87, (int) Main.height / 16 * 6, 169, 128, null);
+					if(MapRender.xSpeed == 0.5 || MapRender.xSpeed == 0) g.drawImage(left.get(xStep/2), (int) (Main.width / 2) - 87, (int) Main.height / 16 * 6, 169, 128, null);
+					if(MapRender.xSpeed == 1.5) g.drawImage(sprintLeft.get(xSpeedStep/4 ), (int) (Main.width / 2) - 87, (int) Main.height / 16 * 6, 169, 128, null);
 					break;
 				case 4:
-					g.drawImage(right.get(xStep), (int) (Main.width / 2) - 87, (int) Main.height / 16 * 6, 169, 128, null);
+					if(MapRender.xSpeed == -0.5 || MapRender.xSpeed == 0) g.drawImage(right.get(xStep/2), (int) (Main.width / 2) - 87, (int) Main.height / 16 * 6, 169, 128, null);
+					if(MapRender.xSpeed == -1.5) g.drawImage(sprintRight.get(xSpeedStep/4), (int) (Main.width / 2) - 87, (int) Main.height / 16 * 6, 169, 128, null);
 					break;
 			}
 			
