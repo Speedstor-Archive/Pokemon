@@ -49,11 +49,10 @@ public class LoadMap extends Objects{
 	}
 	
 	public void render(Graphics g) {
-		//System.out.println(map[1][1]);;
+		
 	}	
 	
 	private void loadFile(String location) {
-
 		try {
 			File file = new File(location);
 			Scanner s = new Scanner(file);

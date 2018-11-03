@@ -56,14 +56,8 @@ public class MapRender extends Objects{
 		if(yBuff >= 69) {yBuff = 0; Player1.updateLocation();}
 		else if(xBuff >= 69) {xBuff = 0; Player1.updateLocation();}
 		
-		/*
-		if(LoadMap.upBlock == true && ySpeed > 0) ySpeed = 0;
-		if(LoadMap.downBlock && ySpeed < 0) ySpeed = 0;
-		if(LoadMap.rightBlock && xSpeed < 0) xSpeed = 0;
-		if(LoadMap.leftBlock && xSpeed > 0) xSpeed = 0; 
-		*/
-		
-		LoadMap.barrier();
+		//check the surrounding 4 blocks to see if it blocks the player
+		//LoadMap.barrier();
 		
 		//Handles double clicks
 		if(xBuff == 0 && yBuff == 0 && direction == Player1.facing) {

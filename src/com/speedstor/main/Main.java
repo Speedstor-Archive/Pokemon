@@ -61,6 +61,7 @@ public class Main extends Canvas implements Runnable {
 		long lastTime = System.nanoTime();
 		double amountOfTicks = 60;
 		double ns = 100000000 /amountOfTicks;
+		int dub = 0;
 		
 		
 		
@@ -83,9 +84,13 @@ public class Main extends Canvas implements Runnable {
 			if(System.currentTimeMillis() - timer > 1000) {
 				timer = System.currentTimeMillis();
 				Main.frames = frames;
-				System.out.println("Frames: " + frames + "       ||       Location: " + Player1.xLocation + " x " + Player1.yLocation);
 				frames = 0;
 				runTime++;
+				dub++;
+			}
+			if(dub >= 60) {
+				System.out.println("RunTime: " + runTime/60 + " minutes"); 
+				dub = 0;
 			}
 		}
 		stop();
