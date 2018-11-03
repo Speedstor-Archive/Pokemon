@@ -8,13 +8,14 @@ import com.speedstor.map.MapRender;
 
 public class Player1 extends Characters{
 	public static double speed = 0.5;
-	public static int facingTimer = 0;
+	public static int facingTimer = 0, xLocation = 3, yLocation = 2;
 	Handler handler;
 	
 	public Player1(String spriteSheet, Handler handler) {
 		this.handler = handler;
 		faceDirection = 2;
 		
+		//initialize the sprite sheet
 		init("Player1", spriteSheet);
 		
 	}
@@ -30,8 +31,15 @@ public class Player1 extends Characters{
 			facingTimer = 0;
 		}
 		
-		
-		
+	}
+	
+	
+	//updates the location of the player in the array map
+	public static void updateLocation() {
+		if(MapRender.ySpeed > 0) yLocation--;
+		else if(MapRender.ySpeed < 0) yLocation++;
+		else if(MapRender.xSpeed < 0) xLocation++;
+		else if(MapRender.xSpeed > 0) xLocation--;
 	}
 	
 	

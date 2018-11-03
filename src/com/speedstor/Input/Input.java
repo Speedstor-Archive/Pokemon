@@ -5,6 +5,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import com.speedstor.debug.DebugScreen;
+import com.speedstor.main.Handler;
 import com.speedstor.main.Main;
 import com.speedstor.map.MapRender;
 import com.speedstor.players.Player1;
@@ -13,10 +15,16 @@ public class Input implements KeyListener, MouseListener{
 		
 	public static boolean keyChange;
 	public int speedInit, speedFinal, direction;
+	Handler handler;
+	
+	public Input(Handler handler) {
+		this.handler = handler;
+		toggleDebug();
+	}
 	
 	public void keyPressed(KeyEvent e) {
 		int k = e.getKeyCode();
-		Main.key = e.getKeyCode();
+		
 		
 		if(k == 16) Player1.speed = 1.5;
 		
@@ -74,6 +82,17 @@ public class Input implements KeyListener, MouseListener{
 			else if(MapRender.down) {MapRender.direction = 2; Player1.facing = 2; keyChange = true;}
 		}
 		
+		if(k == 50) toggleDebug();
+		
+	}
+	
+	
+	//toggle debug screen
+	private boolean debug = false;
+	DebugScreen debugScreen = new DebugScreen(handler);
+	public void toggleDebug() {
+		if(!debug) {handler.addObject(debugScreen); debug = true;}
+		else if(debug) {handler.removeObject(debugScreen); debug = false;}
 	}
 
 	

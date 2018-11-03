@@ -30,11 +30,8 @@ public class MapRender extends Objects{
 		image = loader.Load("/testMap.png");
 	}
 	
-	public void tick() {
-		x += xSpeed;
-		y += ySpeed;
-		
-		//Counts the pixels to blocks passed
+	public void tick() {		
+		//Counts the pixels to blocks passed && handles animation frames
 		if(xSpeed != 0) { 
 			xBuff += Math.abs(xSpeed);
 			if(xBuff == 1.5) Player1.xStep++;
@@ -54,13 +51,19 @@ public class MapRender extends Objects{
 		else if(Player1.ySpeedStep1 != Player1.step) { Player1.ySpeedStep1 = Player1.step; Player1.ySpeedStep++; if(Player1.ySpeedStep >= 16) Player1.ySpeedStep = 0;}
 		
 		
-		//helps the rendering of the animation of Player1
-		
 		
 		//stops actions in blocks
-		if(yBuff >= 69) {yBuff = 0;}
-		else if(xBuff >= 69) {xBuff = 0;}
-
+		if(yBuff >= 69) {yBuff = 0; Player1.updateLocation();}
+		else if(xBuff >= 69) {xBuff = 0; Player1.updateLocation();}
+		
+		/*
+		if(LoadMap.upBlock == true && ySpeed > 0) ySpeed = 0;
+		if(LoadMap.downBlock && ySpeed < 0) ySpeed = 0;
+		if(LoadMap.rightBlock && xSpeed < 0) xSpeed = 0;
+		if(LoadMap.leftBlock && xSpeed > 0) xSpeed = 0; 
+		*/
+		
+		LoadMap.barrier();
 		
 		//Handles double clicks
 		if(xBuff == 0 && yBuff == 0 && direction == Player1.facing) {
@@ -68,41 +71,52 @@ public class MapRender extends Objects{
 			if(direction != 0) Player1.faceDirection = direction;
 				switch(direction) {
 					case 1:
-						buff = xSpeed;
-						xSpeed = 0;
-						ySpeed = Player1.speed;
+						//if(LoadMap.upBlock == false) {
+							xSpeed = 0;
+							ySpeed = Player1.speed;
+						//}else ySpeed = 0;
+							if(LoadMap.upBlock) ySpeed = 0;
 						break;
 					case 2:
-						buff = xSpeed;
-						xSpeed = 0;
-						ySpeed = -Player1.speed;
+						//if(LoadMap.downBlock == false) {
+							xSpeed = 0;
+							ySpeed = -Player1.speed;
+						//}else ySpeed = 0;
+							if(LoadMap.downBlock) ySpeed = 0;
 						break;
 					case 3:
-						buff = ySpeed;
-						ySpeed = 0;
-						xSpeed = Player1.speed;
+						//if(LoadMap.leftBlock == false) {
+							ySpeed = 0;
+							xSpeed = Player1.speed;
+						//}else xSpeed = 0;
+							if(LoadMap.leftBlock) xSpeed = 0;
 						break;
 					case 4:
-						buff = ySpeed;
-						ySpeed = 0;
-						xSpeed = -Player1.speed;
+						//if(LoadMap.rightBlock == false) {
+							ySpeed = 0;
+							xSpeed = -Player1.speed;
+						//}else xSpeed = 0;
+							if(LoadMap.rightBlock) xSpeed = 0;
 						break;
 				}
 			
 		}else if(xBuff == 0 && yBuff == 0 && direction == 0) {
 						xSpeed = 0;
 						ySpeed = 0;
-			}
+		}
 	
 		//Resets direction
 		if(up == false && down == false && left == false && right == false) direction = 0;
 		
+
+		x += xSpeed;
+		y += ySpeed;
 		
 	}
 	
 	
 
 	public void render(Graphics g) {
-		g.drawImage(image, (int)x, (int)y, image.getWidth() * 6, image.getHeight() * 6, null);
+		g.drawImage(image, (int)x, (int)y, image.getWidth() * 9, image.getHeight() * 9, null);
 	}
 }

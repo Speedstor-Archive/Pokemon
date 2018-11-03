@@ -16,7 +16,7 @@ public class Main extends Canvas implements Runnable {
 	//Variables
 		//Global
 			public boolean running = true;
-			public int runTime = 0;
+			public static int frames = 0, runTime = 0;
 			public static double width = 1200, height = width / 4 * 3; //Scene "blocks": 15 x 13
 			public static int key = 0;
 		
@@ -24,9 +24,8 @@ public class Main extends Canvas implements Runnable {
 			Handler handler;
 			private Thread thread;
 		
-		//Game Engine
 
-		
+	
 			
 	
 	//Initial Commit
@@ -46,7 +45,7 @@ public class Main extends Canvas implements Runnable {
 		handler.addObject(new Player1("/maleSprite.png", handler));
 		
 		//keyInput
-		addKeyListener(new Input());
+		addKeyListener(new Input(handler));
 		
 		run();
 	}
@@ -83,7 +82,8 @@ public class Main extends Canvas implements Runnable {
 			
 			if(System.currentTimeMillis() - timer > 1000) {
 				timer = System.currentTimeMillis();
-				System.out.println("Frames: " + frames);
+				Main.frames = frames;
+				System.out.println("Frames: " + frames + "       ||       Location: " + Player1.xLocation + " x " + Player1.yLocation);
 				frames = 0;
 				runTime++;
 			}
@@ -123,9 +123,6 @@ public class Main extends Canvas implements Runnable {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, (int)width, (int)height);
 		
-		g.setFont(new java.awt.Font("Calibre", 8, 30));
-		g.setColor(Color.gray);
-		g.drawString("Key: " + key, 30, 40);
 		
 		handler.render(g);
 		

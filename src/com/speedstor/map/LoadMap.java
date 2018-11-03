@@ -8,18 +8,52 @@ import java.util.Scanner;
 import com.speedstor.main.Handler;
 import com.speedstor.main.LoadImage;
 import com.speedstor.main.Objects;
+import com.speedstor.players.Player1;
 
 public class LoadMap extends Objects{
 	//Variables
-		int[][] map;
+		static int[][] map;
 		Handler handler;
 		int row = 0, col;
 		LoadImage loadImage;
 		BufferedImage temp;
+		public static boolean upBlock = false, downBlock = false, rightBlock = false, leftBlock = false;
 		
 	public LoadMap(String location, Handler handler) {
 		loadImage = new LoadImage();
 		this.handler = handler;
+		
+		loadFile(location);
+		temp = loadImage.Load("/grassTile.png");
+		
+		System.out.println("Finished initlize of map files and textures");
+	}
+	
+
+	public void tick() {
+		
+	}
+	
+	public static void barrier() {
+		if(map[Player1.xLocation][Player1.yLocation-1] == 2) upBlock = false;
+		else if(map[Player1.xLocation][Player1.yLocation - 1] == 77) {upBlock = true;}
+
+		if(map[Player1.xLocation][Player1.yLocation+1] == 2) downBlock = false;
+		else if(map[Player1.xLocation][Player1.yLocation + 1] == 77) downBlock = true;
+
+		if(map[Player1.xLocation - 1][Player1.yLocation] == 2) leftBlock = false;
+		else if(map[Player1.xLocation - 1][Player1.yLocation] == 77) leftBlock = true;
+
+		if(map[Player1.xLocation+1][Player1.yLocation] == 2) rightBlock = false;
+		else if(map[Player1.xLocation+1][Player1.yLocation] == 77) rightBlock = true;
+	}
+	
+	public void render(Graphics g) {
+		//System.out.println(map[1][1]);;
+	}	
+	
+	private void loadFile(String location) {
+
 		try {
 			File file = new File(location);
 			Scanner s = new Scanner(file);
@@ -57,18 +91,6 @@ public class LoadMap extends Objects{
 		}catch (Exception e){
 			e.printStackTrace();
 		}
-		
-		temp = loadImage.Load("/grassTile.png");
-		
-		System.out.println("Finished initlize of map files and textures");
 	}
-	
-	public void tick() {
-		
-	}
-	
-	public void render(Graphics g) {
-		
-	}	
 	
 }
