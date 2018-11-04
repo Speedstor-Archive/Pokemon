@@ -9,7 +9,7 @@ import com.speedstor.map.MapRender;
 
 public class Player1 extends Characters{
 	public static double speed = 0.5;
-	public static int facingTimer = 0, xLocation = 3, yLocation = 2;
+	public static int facingTimer = 0, xLocation = 16, yLocation = 16;
 	Handler handler;
 
 	private int xDisplayLocation = (int) (Main.width / 2) - 87, yDisplayLocation = (int) Main.height / 16 * 6;

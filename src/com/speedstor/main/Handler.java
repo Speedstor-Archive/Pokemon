@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.util.LinkedList;
 
 public class Handler {
-	LinkedList<Objects> objects = new LinkedList<Objects>();
+	public static LinkedList<Objects> objects = new LinkedList<Objects>();
 	
 	public void tick() {
 		for(int i = 0; i < objects.size(); i++){

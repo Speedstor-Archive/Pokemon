@@ -14,7 +14,9 @@ public class LoadMap extends Objects{
 	//Variables
 		static int[][] map;
 		Handler handler;
-		int row = 0, col;
+		static int row = 0;
+		static int col;
+		static int buff;
 		LoadImage loadImage;
 		BufferedImage temp;
 		public static boolean upBlock = false, downBlock = false, rightBlock = false, leftBlock = false;
@@ -35,17 +37,21 @@ public class LoadMap extends Objects{
 	}
 	
 	public static void barrier() {
-		if(map[Player1.xLocation][Player1.yLocation-1] == 2) upBlock = false;
-		else if(map[Player1.xLocation][Player1.yLocation - 1] == 77) {upBlock = true;}
+		buff = map[Player1.xLocation][Player1.yLocation - 1];
+		if(buff == 2) upBlock = false;
+		else if(buff == 77 || buff == 88) {upBlock = true;}
 
-		if(map[Player1.xLocation][Player1.yLocation+1] == 2) downBlock = false;
-		else if(map[Player1.xLocation][Player1.yLocation + 1] == 77) downBlock = true;
+		buff = map[Player1.xLocation][Player1.yLocation+1];
+		if(buff == 2) downBlock = false;
+		else if(buff == 77 || buff == 88) downBlock = true;
 
-		if(map[Player1.xLocation - 1][Player1.yLocation] == 2) leftBlock = false;
-		else if(map[Player1.xLocation - 1][Player1.yLocation] == 77) leftBlock = true;
+		buff = map[Player1.xLocation - 1][Player1.yLocation];
+		if(buff == 2) leftBlock = false;
+		else if(buff == 77 || buff == 88) leftBlock = true;
 
-		if(map[Player1.xLocation+1][Player1.yLocation] == 2) rightBlock = false;
-		else if(map[Player1.xLocation+1][Player1.yLocation] == 77) rightBlock = true;
+		buff = map[Player1.xLocation+1][Player1.yLocation];
+		if(buff == 2) rightBlock = false;
+		else if(buff == 77 || buff == 88) rightBlock = true;
 	}
 	
 	public void render(Graphics g) {

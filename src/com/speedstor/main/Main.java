@@ -27,6 +27,10 @@ public class Main extends Canvas implements Runnable {
 			private Thread thread;
 			LoadImage loader;
 		
+	//Notes
+		/* Objects on screen max at 9500 objects
+		 * 
+		 */
 
 	
 			
@@ -47,7 +51,6 @@ public class Main extends Canvas implements Runnable {
 		handler.addObject(new LoadMap("res/Map1.txt", handler));
 		handler.addObject(new MapRender(handler, loader));
 		handler.addObject(new Player1("/maleSprite.png", handler, loader));
-		handler.addObject(new Trees("/testTree.png",loader));
 		
 		//keyInput
 		addKeyListener(new Input(handler));

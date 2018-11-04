@@ -28,10 +28,12 @@ public class DebugScreen extends Objects{
 		g.fillRect(0, 60, 552, 60);
 		g.fillRect(0, 120, 200, 60);
 		g.fillRect((int)Main.width - 595, 0, 595, 60);
+		g.fillRect((int) Main.width - 360, 60, 360, 60);
 		
 		g.setFont(defualtFont);
 		g.setColor(transparentWhite);
 		g.drawString("Memory: " + Math.round((Memory/Memorytotal) * 100)+ "% (" + Memory + "MB) of " + Memorytotal + "MB", 615,42);
+		g.drawString("Objects on screen: " + Handler.objects.size(), 850, 100);
 		g.drawString("Speedstor \u00a9 PokemonRipoff v2.1.0", 8, 42);
 		g.drawString("Location: " + Player1.xLocation +  " x " + Player1.yLocation + "  ||  runTime: " + Main.runTime, 8, 100);
 		g.drawString("FPS: " + Main.frames , 8, 158);

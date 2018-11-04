@@ -28,6 +28,34 @@ public class MapRender extends Objects{
 		this.handler = handler;
 		this.loader = loader;
 		
+		int xStart = Player1.xLocation - 9;
+		int yStart = Player1.yLocation - 7;
+		
+		for(int i = 0; i < 19; i++) {
+			int xx = xStart + i;
+			for(int u = 0; u < 15; u++) {
+				int yy = yStart + u;
+				if(LoadMap.map[xx][yy] == 88) {
+					handler.addObject(new Trees("/testTree.png", handler, loader, - 40 + (xx - xStart - 1) * 69, - 60 + (yy - yStart - 1) * 69));
+				}
+				
+				
+			}
+		}
+		
+		/*for(int i = 0; i < LoadMap.col; i++) {
+			int xx = xStart + i;
+			for(int u = 0; u < LoadMap.row; u++) {
+				int yy = yStart + u;
+				if(LoadMap.map[i][u] == 88) {
+					handler.addObject(new Trees("/testTree.png", handler, loader, - 40 + (xx - Player1.xLocation + 1) * 69, - 60 + (yy - Player1.yLocation - 1) * 69));
+				}
+				
+				
+			}
+		}*/
+		
+		
 		image = loader.Load("/testMap2.png");
 	}
 	
@@ -54,11 +82,18 @@ public class MapRender extends Objects{
 		
 		
 		//stops actions in blocks
-		if(yBuff >= 69) {yBuff = 0; Player1.updateLocation(); LoadMap.barrier();}
-		else if(xBuff >= 69) {xBuff = 0; Player1.updateLocation(); LoadMap.barrier();}
+		if(yBuff >= 69) {
+			yBuff = 0; Player1.updateLocation(); LoadMap.barrier();
+			updateDisplayObj();
+		}else if(xBuff >= 69) {
+			xBuff = 0; Player1.updateLocation(); LoadMap.barrier();
+			updateDisplayObj();
+		}
 		
-		//check the surrounding 4 blocks to see if it blocks the player
-		//LoadMap.barrier();
+
+		//Resets direction
+		if(up == false && down == false && left == false && right == false) direction = 0;
+		
 		
 		//Handles double clicks
 		if(xBuff == 0 && yBuff == 0 && direction == Player1.facing) {
@@ -94,14 +129,10 @@ public class MapRender extends Objects{
 							if(LoadMap.rightBlock) xSpeed = 0;
 						break;
 				}
-			
 		}else if(xBuff == 0 && yBuff == 0 && direction == 0) {
 						xSpeed = 0;
 						ySpeed = 0;
 		}
-	
-		//Resets direction
-		if(up == false && down == false && left == false && right == false) direction = 0;
 		
 
 		x += xSpeed;
@@ -110,14 +141,48 @@ public class MapRender extends Objects{
 	}
 	
 	
+	int xx, yy, xStart, yStart;
+	private void updateDisplayObj() {
+		xStart = Player1.xLocation - 9;
+		yStart = Player1.yLocation - 7;
+		
+		if(ySpeed > 0) {
+			for(int i = 0; i < 19; i++) {
+				xx = xStart + i;
+				if(LoadMap.map[xx][yStart] == 88) {
+					handler.addObject(new Trees("/testTree.png", handler, loader, - 40 + (xx - xStart - 1) * 69, - 60 + (-1 * 69)));
+				}
+			}
+		}else if(ySpeed < 0) {
+		yy = yStart + 15;
+		for(int i = 0; i < 19; i++) {
+			xx = xStart + i;
+			if(LoadMap.map[xx][yy] == 88) {
+				handler.addObject(new Trees("/testTree.png", handler, loader, - 40 + (xx - xStart - 1) * 69, - 60 + (14 * 69)));
+			}
+		}
+		}else if(xSpeed > 0) {
+		for(int i = 0; i < 15; i++) {
+			yy = yStart + i;
+			if(LoadMap.map[xStart][yy] == 88) {
+				handler.addObject(new Trees("/testTree.png", handler, loader, - 40 + -1 * 69, - 60 + (yy - yStart - 1) * 69));
+			}
+		}
+		}else if(xSpeed < 0) {
+		xx = xStart + 19;
+		for(int i = 0; i < 15; i++) {
+			yy = yStart + i;
+			if(LoadMap.map[xx][yy] == 88) {
+				handler.addObject(new Trees("/testTree.png", handler, loader, - 40 + (18 * 69), - 60 + (yy - yStart - 1) * 69));
+			}
+		}
+		}
+		
+	}
 
 	public void render(Graphics g) {
-		Graphics2D g2 = (Graphics2D) g;
-		//g2.shear(0, 0.01);
 		
-		g.drawImage(image, (int)x + 34, (int)y, (int)(image.getWidth() * 4.8),(int)( image.getHeight() * 4.8), null);
+		//g.drawImage(image, (int)x + 34, (int)y, (int)(image.getWidth() * 4.8),(int)( image.getHeight() * 4.8), null);
 		
-		
-		//g2.shear(0, -0.01);
 	}
 }
