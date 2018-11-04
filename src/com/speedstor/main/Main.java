@@ -52,6 +52,7 @@ public class Main extends Canvas implements Runnable {
 		handler.addObject(new MapRender(handler, loader));
 		handler.addObject(new Player1("/maleSprite.png", handler, loader));
 		
+		//sad
 		//keyInput
 		addKeyListener(new Input(handler));
 		
