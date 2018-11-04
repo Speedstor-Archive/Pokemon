@@ -3,11 +3,13 @@ package com.speedstor.main;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
 import com.speedstor.Input.Input;
 import com.speedstor.map.LoadMap;
 import com.speedstor.map.MapRender;
+import com.speedstor.map.Trees;
 import com.speedstor.players.Player1;
 
 public class Main extends Canvas implements Runnable {
@@ -23,6 +25,7 @@ public class Main extends Canvas implements Runnable {
 		//Private
 			Handler handler;
 			private Thread thread;
+			LoadImage loader;
 		
 
 	
@@ -35,14 +38,16 @@ public class Main extends Canvas implements Runnable {
 	
 	public Main() {
 		handler = new Handler();
+		loader = new LoadImage();
 		
 		//Creating window
 		new Window((int) width, (int)height, "Pokemon is dumb", this);
 		
 		//Adding elements on screen
 		handler.addObject(new LoadMap("res/Map1.txt", handler));
-		handler.addObject(new MapRender(handler));
-		handler.addObject(new Player1("/maleSprite.png", handler));
+		handler.addObject(new MapRender(handler, loader));
+		handler.addObject(new Player1("/maleSprite.png", handler, loader));
+		handler.addObject(new Trees("/testTree.png",loader));
 		
 		//keyInput
 		addKeyListener(new Input(handler));
@@ -116,8 +121,11 @@ public class Main extends Canvas implements Runnable {
 		handler.tick();
 	}
 	
+
+	BufferStrategy bs =  getBufferStrategy();
+	
 	public void render() {
-		BufferStrategy bs =  getBufferStrategy();
+		bs =  getBufferStrategy();
 		if(bs == null) {
 			createBufferStrategy(3);
 			return;

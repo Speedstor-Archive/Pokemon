@@ -9,6 +9,7 @@ import com.speedstor.debug.DebugScreen;
 import com.speedstor.main.Handler;
 import com.speedstor.main.Main;
 import com.speedstor.map.MapRender;
+import com.speedstor.map.Trees;
 import com.speedstor.players.Player1;
 
 public class Input implements KeyListener, MouseListener{
@@ -54,6 +55,12 @@ public class Input implements KeyListener, MouseListener{
 				if(MapRender.up || MapRender.down) {Player1.facing = 4; keyChange = true;}
 			}
 		
+
+			//if(k == 84) Trees.ySpeed = -0.5;
+			//else if(k == 71) Trees.ySpeed = 0.5;
+			//else if(k == 70) Trees.xSpeed = -0.5;
+			//else if(k == 72) Trees.xSpeed = 0.5;
+			
 	}
 
 
@@ -83,6 +90,14 @@ public class Input implements KeyListener, MouseListener{
 		}
 		
 		if(k == 50) toggleDebug();
+		
+		if(k == 84) Trees.ySpeed = 0;
+		else if(k == 71) Trees.ySpeed = 0;
+		else if(k == 70) Trees.xSpeed = 0;
+		else if(k == 72) Trees.xSpeed = 0;
+		
+		
+		//System.out.println(k);
 		
 	}
 	

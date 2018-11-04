@@ -12,11 +12,12 @@ public class Characters extends Objects{
 	public static int facing, faceDirection;
 	ArrayList<BufferedImage> up, down, right, left, sprintUp, sprintDown, sprintRight, sprintLeft;
 	public BufferedImage spriteSheet;
+	LoadImage loader;
 	
 	// 102
 	
-	protected void init(String parentClass, String sprite) {		
-		LoadImage loader = new LoadImage();		
+	protected void init(String parentClass, String sprite, LoadImage loader) {		
+		this.loader = loader;		
 		spriteSheet = loader.Load(sprite);
 		
 		if(parentClass == "Player1") {

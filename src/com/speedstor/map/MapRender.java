@@ -1,6 +1,7 @@
 package com.speedstor.map;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import com.speedstor.Input.Input;
@@ -23,11 +24,11 @@ public class MapRender extends Objects{
 		//left: 3
 		//right: 4
 		
-	public MapRender(Handler handler) {
+	public MapRender(Handler handler, LoadImage loader) {
 		this.handler = handler;
-		loader = new LoadImage();
+		this.loader = loader;
 		
-		image = loader.Load("/testMap.png");
+		image = loader.Load("/testMap2.png");
 	}
 	
 	public void tick() {		
@@ -53,8 +54,8 @@ public class MapRender extends Objects{
 		
 		
 		//stops actions in blocks
-		if(yBuff >= 69) {yBuff = 0; Player1.updateLocation();}
-		else if(xBuff >= 69) {xBuff = 0; Player1.updateLocation();}
+		if(yBuff >= 69) {yBuff = 0; Player1.updateLocation(); LoadMap.barrier();}
+		else if(xBuff >= 69) {xBuff = 0; Player1.updateLocation(); LoadMap.barrier();}
 		
 		//check the surrounding 4 blocks to see if it blocks the player
 		//LoadMap.barrier();
@@ -111,6 +112,12 @@ public class MapRender extends Objects{
 	
 
 	public void render(Graphics g) {
-		g.drawImage(image, (int)x, (int)y, image.getWidth() * 9, image.getHeight() * 9, null);
+		Graphics2D g2 = (Graphics2D) g;
+		//g2.shear(0, 0.01);
+		
+		g.drawImage(image, (int)x + 34, (int)y, (int)(image.getWidth() * 4.8),(int)( image.getHeight() * 4.8), null);
+		
+		
+		//g2.shear(0, -0.01);
 	}
 }
