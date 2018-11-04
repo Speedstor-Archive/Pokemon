@@ -47,7 +47,7 @@ public class Trees extends Objects{
 		x += MapRender.xSpeed;
 		y += MapRender.ySpeed;
 		
-		if(x < -440 || x > Main.width + 440 || y < -500 || y > Main.height + 500) handler.removeObject(this);
+		if(x < -230 || x > Main.width + 230 || y < -220 || y > Main.height + 220) handler.removeObject(this);
 		
 	}
 
