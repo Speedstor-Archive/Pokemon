@@ -38,8 +38,7 @@ public class Trees extends Objects{
 		g2.shear(shx, 0);
 		g.drawImage(img, (int) x,(int)( y - yTransform/2), 255, (int)yTransform , null);
 		g2.shear(-shx, 0);
-		
-		
+				
 	}
 
 	@Override

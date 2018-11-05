@@ -16,7 +16,7 @@ public class MapRender extends Objects{
 		public static boolean up = false, down = false, right = false, left = false;
 		LoadImage loader;
 		BufferedImage image;
-		public static double x = 0, y = 0, xSpeed = 0, ySpeed = 0, buff, xBuff, yBuff;
+		public static double x = -200, y = -200, xSpeed = 0, ySpeed = 0, buff, xBuff, yBuff;
 		public static int direction, location;
 		
 		//up: 1
@@ -38,25 +38,10 @@ public class MapRender extends Objects{
 				if(LoadMap.map[xx][yy] == 88) {
 					handler.addObject(new Trees("/testTree.png", handler, loader, - 40 + (xx - xStart - 1) * 69, - 60 + (yy - yStart - 1) * 69));
 				}
-				
-				
 			}
 		}
-		
-		/*for(int i = 0; i < LoadMap.col; i++) {
-			int xx = xStart + i;
-			for(int u = 0; u < LoadMap.row; u++) {
-				int yy = yStart + u;
-				if(LoadMap.map[i][u] == 88) {
-					handler.addObject(new Trees("/testTree.png", handler, loader, - 40 + (xx - Player1.xLocation + 1) * 69, - 60 + (yy - Player1.yLocation - 1) * 69));
-				}
 				
-				
-			}
-		}*/
-		
-		
-		image = loader.Load("/testMap2.png");
+		image = loader.Load("/backgroundgrass.png");
 	}
 	
 	public void tick() {		
@@ -178,11 +163,17 @@ public class MapRender extends Objects{
 		}
 		}
 		
+		if(x > 0) x = -200;
+		else if(x < -200) x = 0;
+		else if(y > 0) y = -200;
+		else if(y < -200) y =0;
+		
 	}
 
+	//placeHolders for dumb variables;
 	public void render(Graphics g) {
 		
-		//g.drawImage(image, (int)x + 34, (int)y, (int)(image.getWidth() * 4.8),(int)( image.getHeight() * 4.8), null);
+		g.drawImage(image, (int)x, (int)y, 1725, 1350, null);
 		
 	}
 }

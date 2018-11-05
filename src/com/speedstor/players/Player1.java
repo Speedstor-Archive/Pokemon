@@ -24,7 +24,7 @@ public class Player1 extends Characters{
 	}
 
 	public void tick() {
-		//face the charcter graphics to the right direction
+		//face the character graphics to the right direction
 		if(facing != MapRender.direction && MapRender.direction != 0 && Input.keyChange == false && MapRender.xSpeed == 0 && MapRender.ySpeed == 0) faceDirection = MapRender.direction;
 		
 		//Directing the player to face the right direction before taking off
