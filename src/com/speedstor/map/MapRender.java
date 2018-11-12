@@ -8,6 +8,8 @@ import com.speedstor.Input.Input;
 import com.speedstor.main.Handler;
 import com.speedstor.main.LoadImage;
 import com.speedstor.main.Objects;
+import com.speedstor.objects.Grass;
+import com.speedstor.objects.Trees;
 import com.speedstor.players.Player1;
 
 public class MapRender extends Objects{
@@ -36,7 +38,10 @@ public class MapRender extends Objects{
 			for(int u = 0; u < 15; u++) {
 				int yy = yStart + u;
 				if(LoadMap.map[xx][yy] == 88) {
-					handler.addObject(new Trees("/testTree.png", handler, loader, - 40 + (xx - xStart - 1) * 69, - 60 + (yy - yStart - 1) * 69));
+					handler.addObjectTopMost(new Trees("/testTree.png", handler, loader, - 40 + (xx - xStart - 1) * 69, - 60 + (yy - yStart - 1) * 69));
+				}
+				if(LoadMap.map[xx][yy] == 44) {
+					handler.addObjectUnder(new Grass("/grass.png", handler, loader, - 40 + (xx - xStart - 1) * 69, - 60 + (yy - yStart - 1) * 69));
 				}
 			}
 		}
@@ -134,32 +139,28 @@ public class MapRender extends Objects{
 		if(ySpeed > 0) {
 			for(int i = 0; i < 19; i++) {
 				xx = xStart + i;
-				if(LoadMap.map[xx][yStart] == 88) {
-					handler.addObject(new Trees("/testTree.png", handler, loader, - 40 + (xx - xStart - 1) * 69, - 60 + (-1 * 69)));
-				}
+				if(LoadMap.map[xx][yStart] == 88) handler.addObjectUnder(new Trees("/testTree.png", handler, loader, - 40 + (xx - xStart - 1) * 69, - 60 + (-1 * 69)));
+				if(LoadMap.map[xx][yStart] == 44) handler.addObjectUnder(new Grass("/grass.png", handler, loader, - 40 + (xx - xStart - 1) * 69, - 60 + (-1 * 69)));
 			}
 		}else if(ySpeed < 0) {
 		yy = yStart + 15;
-		for(int i = 0; i < 19; i++) {
-			xx = xStart + i;
-			if(LoadMap.map[xx][yy] == 88) {
-				handler.addObject(new Trees("/testTree.png", handler, loader, - 40 + (xx - xStart - 1) * 69, - 60 + (14 * 69)));
+			for(int i = 0; i < 19; i++) {
+				xx = xStart + i;
+				if(LoadMap.map[xx][yy] == 88) handler.addObject(new Trees("/testTree.png", handler, loader, - 40 + (xx - xStart - 1) * 69, - 60 + (14 * 69)));
+				if(LoadMap.map[xx][yy] == 44) handler.addObjectUnder(new Grass("/grass.png", handler, loader, - 40 + (xx - xStart - 1) * 69, - 60 + (14 * 69)));
 			}
-		}
 		}else if(xSpeed > 0) {
 		for(int i = 0; i < 15; i++) {
 			yy = yStart + i;
-			if(LoadMap.map[xStart][yy] == 88) {
-				handler.addObject(new Trees("/testTree.png", handler, loader, - 40 + -1 * 69, - 60 + (yy - yStart - 1) * 69));
-			}
+			if(LoadMap.map[xStart][yy] == 88) handler.addObject(new Trees("/testTree.png", handler, loader, - 40 + -1 * 69, - 60 + (yy - yStart - 1) * 69));
+			if(LoadMap.map[xStart][yy] == 44) handler.addObjectUnder(new Grass("/grass.png", handler, loader, - 40 + -1 * 69, - 60 + (yy - yStart - 1) * 69));
 		}
 		}else if(xSpeed < 0) {
 		xx = xStart + 19;
 		for(int i = 0; i < 15; i++) {
 			yy = yStart + i;
-			if(LoadMap.map[xx][yy] == 88) {
-				handler.addObject(new Trees("/testTree.png", handler, loader, - 40 + (18 * 69), - 60 + (yy - yStart - 1) * 69));
-			}
+			if(LoadMap.map[xx][yy] == 88) handler.addObject(new Trees("/testTree.png", handler, loader, - 40 + (18 * 69), - 60 + (yy - yStart - 1) * 69));
+			if(LoadMap.map[xx][yy] == 44) handler.addObjectUnder(new Grass("/grass.png", handler, loader, - 40 + (18 * 69), - 60 + (yy - yStart - 1) * 69));
 		}
 		}
 		

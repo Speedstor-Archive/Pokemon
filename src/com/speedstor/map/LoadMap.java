@@ -3,10 +3,12 @@ package com.speedstor.map;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.Random;
 import java.util.Scanner;
 
 import com.speedstor.main.Handler;
 import com.speedstor.main.LoadImage;
+import com.speedstor.main.Main;
 import com.speedstor.main.Objects;
 import com.speedstor.players.Player1;
 
@@ -19,12 +21,15 @@ public class LoadMap extends Objects{
 		static int buff;
 		LoadImage loadImage;
 		BufferedImage temp;
+		static Random r;
 		public static boolean upBlock = false, downBlock = false, rightBlock = false, leftBlock = false;
+		static Main main;
 		
-	public LoadMap(String location, Handler handler) {
+	public LoadMap(String location, Handler handler, Main main) {
+		LoadMap.main = main;
+		r = new Random();
 		loadImage = new LoadImage();
 		this.handler = handler;
-		
 		loadFile(location);
 		temp = loadImage.Load("/grassTile.png");
 		
@@ -37,6 +42,8 @@ public class LoadMap extends Objects{
 	}
 	
 	public static void barrier() {
+		if(map[Player1.xLocation][Player1.yLocation] == 44) Monsters(30);
+		
 		buff = map[Player1.xLocation][Player1.yLocation - 1];
 		if(buff == 2) upBlock = false;
 		else if(buff == 77 || buff == 88) {upBlock = true;}
@@ -52,6 +59,13 @@ public class LoadMap extends Objects{
 		buff = map[Player1.xLocation+1][Player1.yLocation];
 		if(buff == 2) rightBlock = false;
 		else if(buff == 77 || buff == 88) rightBlock = true;
+	}
+	
+	public static void Monsters(int chance){
+		if(r.nextInt(chance) == 1) {
+			System.out.println("yay");
+			main.changeScene("hi");
+		}
 	}
 	
 	public void render(Graphics g) {

@@ -9,7 +9,7 @@ import java.awt.image.BufferStrategy;
 import com.speedstor.Input.Input;
 import com.speedstor.map.LoadMap;
 import com.speedstor.map.MapRender;
-import com.speedstor.map.Trees;
+import com.speedstor.objects.Trees;
 import com.speedstor.players.Player1;
 
 public class Main extends Canvas implements Runnable {
@@ -48,9 +48,9 @@ public class Main extends Canvas implements Runnable {
 		new Window((int) width, (int)height, "Pokemon is dumb", this);
 		
 		//Adding elements on screen
-		handler.addObject(new LoadMap("res/Map1.txt", handler));
-		handler.addObject(new MapRender(handler, loader));
-		handler.addObject(new Player1("/maleSprite.png", handler, loader));
+		handler.addObjectTopMost(new LoadMap("res/Map1.txt", handler, this));
+		handler.addObjectCustom(1,  new Player1("/maleSprite.png", handler, loader));
+		handler.addObjectUnderMost(new MapRender(handler, loader));
 		
 		//keyInput
 		addKeyListener(new Input(handler));
@@ -123,10 +123,7 @@ public class Main extends Canvas implements Runnable {
 	private void tick() {
 		handler.tick();
 	}
-	
-
 	BufferStrategy bs =  getBufferStrategy();
-	
 	public void render() {
 		bs =  getBufferStrategy();
 		if(bs == null) {
@@ -145,4 +142,12 @@ public class Main extends Canvas implements Runnable {
 		g.dispose();
 		bs.show();
 	}
+	
+	
+	public void changeScene(String mapPath) {
+		handler.removeAllObjects();
+	}
 }
+
+
+

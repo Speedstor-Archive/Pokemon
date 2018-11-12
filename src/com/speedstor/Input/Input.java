@@ -104,7 +104,7 @@ public class Input implements KeyListener, MouseListener{
 	private boolean debug = false;
 	DebugScreen debugScreen = new DebugScreen(handler);
 	public void toggleDebug() {
-		if(!debug) {handler.addObject(debugScreen); debug = true;}
+		if(!debug) {handler.addObjectTopMost(debugScreen); debug = true;}
 		else if(debug) {handler.removeObject(debugScreen); debug = false;}
 	}
 
